@@ -26,7 +26,7 @@ class DataTransformation:
             numerical_columns = ['writing_score', 'reading_score']
             categorical_columns = [
                 "gender",
-                "race_ethnicity",
+               # "race_ethnicity",
                 "parental_level_of_education",
                 "lunch",
                 "test_preparation_course",
@@ -66,6 +66,12 @@ class DataTransformation:
         try:
             train_df = pd.read_csv(train_path)
             test_df = pd.read_csv(test_path)
+
+
+              # Drop 'race_ethnicity' column from both train and test datasets
+            train_df = train_df.drop(columns=['race_ethnicity'], errors='ignore')
+            test_df = test_df.drop(columns=['race_ethnicity'], errors='ignore')
+            
 
             logging.info("Read train and test data completed")
             logging.info("Obtaining Preprocessing object")
